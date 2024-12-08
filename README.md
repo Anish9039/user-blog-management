@@ -1,3 +1,5 @@
+A full-stack blog application built with React.js and MySQL. Features include user authentication with JWT, profile management (image upload & password update), and a responsive blog interface with CRUD operations. Built using React, Express.js, MySQL, JWT, bcrypt, and Multer for file uploads.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
