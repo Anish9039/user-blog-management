@@ -55,12 +55,25 @@ const Navbar = () => {
   
         {/* Navigation links for larger screens */}
         <div className="hidden md:flex space-x-6">
-          <a href="#" className="text-gray-300 hover:text-white transition-colors">
-            Home 
+          <a href="/" className="text-gray-300 hover:text-white transition-colors">
+            Home
           </a>
-          <a href="#" className="text-gray-300 hover:text-white transition-colors">
-            Blog 
-          </a>
+          {/* Show Blog link only if the user is logged in */}
+          {currentUser && (
+            <a href="/create" className="text-gray-300 hover:text-white transition-colors">
+              Blog
+            </a>
+
+            
+          )}
+
+            {currentUser && (
+            <a href="/BlogList" className="text-gray-300 hover:text-white transition-colors">
+              List blog
+            </a>
+
+            
+          )}
         </div>
   
         <div className="relative dropdown">
@@ -109,14 +122,17 @@ const Navbar = () => {
         </div>
       </div>
   
-      {/* Mobile navigation links */}
-      <div className="md:hidden flex justify-center space-x-6 bg-gray-900 py-2">
-        <a href="#" className="text-gray-300 hover:text-white">
-          Home 
+     {/* Mobile navigation links */}
+     <div className="md:hidden flex justify-center space-x-6 bg-gray-900 py-2">
+        <a href="/" className="text-gray-300 hover:text-white">
+          Home
         </a>
-        <a href="#" className="text-gray-300 hover:text-white">
-          Blog 
-        </a>
+        {/* Show Blog link only if the user is logged in */}
+        {currentUser && (
+          <a href="/create" className="text-gray-300 hover:text-white">
+            Blog
+          </a>
+        )}
       </div>
     </nav>
   );

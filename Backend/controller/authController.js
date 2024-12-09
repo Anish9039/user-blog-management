@@ -7,7 +7,6 @@ const path = require('path');
 const fs = require('fs'); // File system module for checking if upload directory exists
 
 // Setup file upload using multer
-// Ensure the 'uploads' directory exists, if not, create it
 if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads', { recursive: true });
   }
@@ -96,27 +95,6 @@ const signup = (req, res) => {
   });
 };
 
-// Login User (JWT Authentication)
-// const login = (req, res) => {
-//   const { email, password } = req.body;
-
-//   userModel.findUserByEmail(email, (err, results) => {
-//     if (err) return handleError(res, 500, 'Internal server error');
-//     if (results.length === 0) return handleError(res, 404, 'User not found');
-
-//     const user = results[0];
-//     bcrypt.compare(password, user.password, (err, isMatch) => {
-//       if (err) return handleError(res, 500, 'Error comparing passwords');
-//       if (!isMatch) return handleError(res, 400, 'Invalid password');
-
-//       const token = jwt.sign({ userId: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-//       res.status(200).json({
-//         token,
-//         user: { id: user.id, name: user.name, email: user.email, image: user.image },
-//       });
-//     });
-//   });
-// };
 
 const login = (req, res) => {
     const { email, password } = req.body;
@@ -133,12 +111,12 @@ const login = (req, res) => {
         if (err) return handleError(res, 500, 'Error comparing passwords');
         if (!isMatch) return handleError(res, 400, 'Invalid password');
   
-        // Generate JWT token with user.id (changed to 'id' for consistency)
+        // Generate JWT token with user.id 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'your_jwt_secret', { expiresIn: '1h' });
         
 
   
-        // Send response with token and user data (excluding sensitive info like password)
+        // Send response with token and user data 
         res.status(200).json({
             token,
             user: {
@@ -152,9 +130,9 @@ const login = (req, res) => {
     });
   };
 
-// Profile Management (Upload Image and Update Password)
 
 
+// Update Password
 // Update Password
 const updatePassword = (req, res) => {
     console.log('req.user:', req.user); // Debugging log to ensure req.user is correct
@@ -203,6 +181,8 @@ const updatePassword = (req, res) => {
       });
     });
   };
+  
+
   
   
 
